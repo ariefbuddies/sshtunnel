@@ -36,11 +36,11 @@
 ##  I made a shortcut to execute this script and it is easy as pie
 ##  If you are really lazy you could setup ssh keys so you don't have to enter a password every time you open the tunnel
 
-user="tyghe"
-host="apartmenta.tygertown.us"
+user=""
+host=""
 localport=8080
 remoteport=443
-log=/home/tyghe/logs/tunnel.log
+log=tunnel.log
 
 date | tee -a $log
 
