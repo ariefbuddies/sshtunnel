@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ###############
 ## Use ssh's SOCKS proxy functionality to tunnel traffic over a given local port
@@ -36,27 +36,28 @@
 ##  I made a shortcut to execute this script and it is easy as pie
 ##  If you are really lazy you could setup ssh keys so you don't have to enter a password every time you open the tunnel
 
-user=""
-host=""
+user="tyghe"
+host="home"
 localport=8080
 remoteport=443
 log=tunnel.log
+cmd="ssh -fCNT -D $localport $host -p $remoteport"
 
 date | tee -a $log
 
-pid=$(pgrep -fu $user $host)
+pid=$(pgrep -fu $USER "$cmd")
 
 # Is the tunnel already open?
 if [ "$pid" == "" ]
 then
     # Open tunnel
     echo "Openning tunnel" | tee -a $log
-    ssh -fCNT -D $localport $host -p $remoteport 
-    pid=$(pgrep -fu $user $host)
+    $cmd
+    pid=$(pgrep -fu $USER "$cmd")
 else
     echo "Tunnel already exists" | tee -a $log
 fi
-echo $pid | tee -a $log
+echo "PID of SSH Tunnel: $pid" | tee -a $log
 
 firefox -P Tunnel -no-remote
 wait
