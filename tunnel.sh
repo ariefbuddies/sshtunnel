@@ -62,7 +62,7 @@ echo "PID of SSH Tunnel: $pid" | tee -a $log
 firefox -P Tunnel -no-remote
 wait
 
-# Kill the tunnel as I am paranoid that they will be suspicious of long lasting port 443 sessions
+# Kill the tunnel
 echo "Tearing down tunnel" | tee -a $log
 kill $pid | tee -a $log
 date | tee -a $log
